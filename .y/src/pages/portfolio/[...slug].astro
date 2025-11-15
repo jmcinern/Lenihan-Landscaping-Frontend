@@ -5,9 +5,9 @@ import BlogPost from '../../layouts/BlogPost.astro';
 export async function getStaticPaths() {
 	const posts = await getCollection('portfolio');
 	return posts.map((post) => ({
-		// *** THIS IS THE FIX ***
-		// Changed post.slug to post.id
-		params: { slug: post.id },
+		// *** THIS IS THE FINAL FIX ***
+		// Changed post.id to post.slug
+		params: { slug: post.slug },
 		props: post,
 	}));
 }
