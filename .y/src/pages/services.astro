@@ -1,0 +1,62 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Our Services - Lenihan Landscaping" description="Explore our design, build, and maintenance services." />
+		<style>
+			/* Simple styles for the services page */
+			.service-card {
+				border: 1px solid #eee;
+				border-radius: 8px;
+				padding: 24px;
+				margin-bottom: 20px;
+				background: #f9f9f9;
+			}
+			.service-card h2 {
+				margin-top: 0;
+				color: #228b22; /* Garden green */
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Our Services</h1>
+			
+			<div class="service-card">
+				<h2>Design</h2>
+				<p>
+					Our comprehensive design service guides you through the entire creative process, 
+					from the first concept sketch to a final, detailed plan for your perfect garden.
+				</p>
+			</div>
+
+			<div class="service-card">
+				<h2>Build</h2>
+				<p>
+					Our skilled team brings your vision to life with meticulous care and craftsmanship, 
+					ensuring every element, from patios to planting, is built to the highest standard.
+				</p>
+			</div>
+
+			<div class="service-card">
+				<h2>Maintain</h2>
+				<p>
+					“Free up your time to focus on what’s truly important to you”
+				</p>
+				<p>
+					Our excellent maintenance service, complete with the requisite equipment and 
+					expertise delivers an efficient, reliable and hassle-free customer experience.
+				</p>
+			</div>
+
+		</main>
+		<Footer />
+	</body>
+</html>
