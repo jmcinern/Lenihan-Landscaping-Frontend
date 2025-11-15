@@ -1,4 +1,8 @@
 1. 
 npm create astro@latest .- 
--> npm not installed
--> install Node.js
+err -> npm not installed
+soln. -> install Node.js
+
+2. select blog template for astro
+3. Sign up to Netifly.
+4. Connect GitHub repo to Netifly.
