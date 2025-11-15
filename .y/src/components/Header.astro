@@ -1,6 +1,6 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import Socials from './Socials.astro'; // We need to keep this component
+// import Socials from './Socials.astro'; // 1. I have REMOVED this line
 import { SITE_TITLE } from '../consts';
 ---
 
@@ -11,7 +11,7 @@ import { SITE_TITLE } from '../consts';
 			<a href="/">{SITE_TITLE}</a>
 		</div>
 
-		<!-- These are the center links. I've updated them. -->
+		<!-- These are the center links. -->
 		<div class="nav-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/services">Services</HeaderLink>
@@ -20,14 +20,12 @@ import { SITE_TITLE } from '../consts';
 			<HeaderLink href="/contact">Contact</HeaderLink>
 		</div>
 
-		<!-- This is the right-side social icons -->
-		<div class="social-links">
-			<Socials />
-		</div>
+		<!-- 2. I have REMOVED the <Socials /> component from here. -->
+		<!-- We can add social links back later if you need them. -->
 	</nav>
 </header>
 <style>
-	/* These are the ORIGINAL styles from the template, which I deleted */
+	/* These are the ORIGINAL styles from the template */
 	header {
 		margin: 0;
 		padding: 0 1em;
@@ -50,18 +48,12 @@ import { SITE_TITLE } from '../consts';
 	
 	.brand a {
 		text-decoration: none;
-		/* This uses the template's global style variable for text color */
 		color: var(--text); 
 	}
 	
-	/* This will keep the links in the center */
 	.nav-links {
 		display: flex;
 		gap: 1.5em;
-	}
-
-	.social-links {
-		display: flex;
 	}
 
 	/* This ensures the center links are hidden on small screens */
