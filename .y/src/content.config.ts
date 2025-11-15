@@ -1,10 +1,16 @@
 import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders';
 
-// 1. Renamed 'blog' to 'portfolio'
+// We are REMOVING the 'glob' loader.
+
 const portfolio = defineCollection({
- 	// 2. Updated the 'base' path to the new folder
-	loader: glob({ base: './src/content/portfolio', pattern: '**/*.{md,mdx}' }),
+ 	// We are setting the type to 'content'.
+	// This tells Astro to handle .md files
+	// and provide the .render() function, which fixes the error.
+	type: 'content',
+
+	// By default, a 'content' collection
+	// looks in 'src/content/portfolio/', which is perfect.
+	
 	// Type-check frontmatter using a schema
 	schema: ({ image }) =>
 		z.object({
@@ -17,5 +23,5 @@ const portfolio = defineCollection({
 		}),
 });
 
-// 3. Updated the export
+// Updated the export
 export const collections = { portfolio };
