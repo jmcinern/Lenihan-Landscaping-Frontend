@@ -1,0 +1,43 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Contact Us - Lenihan Landscaping" description="Get in touch for a free quote." />
+		<style>
+			.contact-details {
+				line-height: 1.8;
+			}
+			.contact-details strong {
+				color: #333;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Get in Touch</h1>
+			<div class="contact-details">
+				<p>
+					<strong>Name:</strong> Jack Lenihan, Owner Operator
+				</p>
+				<p>
+					<strong>Phone:</strong> 0894542988
+				</p>
+				<p>
+					<strong>Email:</strong> [TODO: Add Jack's Email Address]
+				</p>
+				<p>
+					<strong>Service Area:</strong> Dublin wide
+				</p>
+			</div>
+			
+		</main>
+		<Footer />
+	</body>
+</html>
