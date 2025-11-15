@@ -1,47 +1,73 @@
 ---
 import HeaderLink from './HeaderLink.astro';
+import Socials from './Socials.astro'; // We need to keep this component
 import { SITE_TITLE } from '../consts';
 ---
 
 <header>
 	<nav>
-		<!-- This can be changed in src/consts.ts -->
-		<h2><a href="/">{SITE_TITLE}</a></h2> 
-		<div class="internal-links">
+		<!-- This is the left-side "Astro Blog" title -->
+		<div class="brand">
+			<a href="/">{SITE_TITLE}</a>
+		</div>
+
+		<!-- These are the center links. I've updated them. -->
+		<div class="nav-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/services">Services</HeaderLink>
 			<HeaderLink href="/portfolio">Portfolio</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 			<HeaderLink href="/contact">Contact</HeaderLink>
 		</div>
+
+		<!-- This is the right-side social icons -->
+		<div class="social-links">
+			<Socials />
+		</div>
 	</nav>
 </header>
 <style>
-	/* These styles are from our previous work */
+	/* These are the ORIGINAL styles from the template, which I deleted */
 	header {
 		margin: 0;
 		padding: 0 1em;
 		background: white;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 	}
 	nav {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		max-width: 960px; /* Limits width and centers it */
+		margin: 0 auto; /* Centers the nav */
+		padding: 0.5em 0;
 	}
-	h2 {
-		margin: 0;
+
+	.brand {
 		font-size: 1.5em;
+		font-weight: 600;
 	}
-
-	h2 a,
-	h2 a.active {
+	
+	.brand a {
 		text-decoration: none;
-		color: #228b22; /* Garden green */
+		/* This uses the template's global style variable for text color */
+		color: var(--text); 
+	}
+	
+	/* This will keep the links in the center */
+	.nav-links {
+		display: flex;
+		gap: 1.5em;
 	}
 
-	.internal-links {
+	.social-links {
 		display: flex;
-		gap: 1em;
+	}
+
+	/* This ensures the center links are hidden on small screens */
+	@media (max-width: 720px) {
+		.nav-links {
+			display: none;
+		}
 	}
 </style>
