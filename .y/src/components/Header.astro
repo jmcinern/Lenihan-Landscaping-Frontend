@@ -1,17 +1,14 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-// import Socials from './Socials.astro'; // 1. I have REMOVED this line
 import { SITE_TITLE } from '../consts';
 ---
 
 <header>
 	<nav>
-		<!-- This is the left-side "Astro Blog" title -->
 		<div class="brand">
 			<a href="/">{SITE_TITLE}</a>
 		</div>
 
-		<!-- These are the center links. -->
 		<div class="nav-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/services">Services</HeaderLink>
@@ -19,13 +16,10 @@ import { SITE_TITLE } from '../consts';
 			<HeaderLink href="/about">About</HeaderLink>
 			<HeaderLink href="/contact">Contact</HeaderLink>
 		</div>
-
-		<!-- 2. I have REMOVED the <Socials /> component from here. -->
-		<!-- We can add social links back later if you need them. -->
 	</nav>
 </header>
 <style>
-	/* These are the ORIGINAL styles from the template */
+	/* These are the layout styles we fixed */
 	header {
 		margin: 0;
 		padding: 0 1em;
@@ -36,30 +30,54 @@ import { SITE_TITLE } from '../consts';
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		max-width: 960px; /* Limits width and centers it */
-		margin: 0 auto; /* Centers the nav */
+		max-width: 960px; 
+		margin: 0 auto; 
 		padding: 0.5em 0;
 	}
-
 	.brand {
 		font-size: 1.5em;
 		font-weight: 600;
 	}
-	
 	.brand a {
 		text-decoration: none;
 		color: var(--text); 
 	}
-	
 	.nav-links {
 		display: flex;
 		gap: 1.5em;
 	}
-
-	/* This ensures the center links are hidden on small screens */
 	@media (max-width: 720px) {
 		.nav-links {
 			display: none;
 		}
+	}
+
+	/* --- THIS IS THE FIX ---
+	   This :global() selector will override the ugly blue
+	   from the template, even inside the HeaderLink component.
+	*/
+
+	/* Style for non-active links */
+	:global(.nav-links a) {
+		text-decoration: none !important;
+		color: #555 !important; /* A nice dark grey */
+		background-color: transparent !important;
+		padding: 0.5em 1em;
+		border-radius: 6px;
+		transition: all 0.2s ease;
+	}
+
+	/* Style for when you hover over a link */
+	:global(.nav-links a:hover) {
+		color: #228b22 !important; /* Garden green on hover */
+		background-color: #f0f8f0 !important; /* Light green background */
+	}
+
+	/* Style for the link of the page you are currently on */
+	:global(.nav-links a.active) {
+		color: #228b22 !important; /* Garden green for active link */
+		background-color: #f0f8f0 !important; /* Light green background */
+		font-weight: 600 !important;
+		text-decoration: none !important; /* Remove that ugly underline */
 	}
 </style>
