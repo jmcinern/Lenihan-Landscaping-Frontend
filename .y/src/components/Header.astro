@@ -9,6 +9,7 @@ import { SITE_TITLE } from '../consts';
 			<a href="/">{SITE_TITLE}</a>
 		</div>
 
+		<!-- This is the original desktop menu -->
 		<div class="nav-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/services">Services</HeaderLink>
@@ -16,10 +17,35 @@ import { SITE_TITLE } from '../consts';
 			<HeaderLink href="/about">About</HeaderLink>
 			<HeaderLink href="/contact">Contact</HeaderLink>
 		</div>
+
+		<!-- 
+			NEW: HAMBURGER BUTTON 
+			This button is hidden on desktop and visible on mobile.
+		-->
+		<button class="hamburger" id="menu-toggle" aria-label="Toggle menu">
+			<svg width="30" height="30" viewBox="0 0 100 100">
+				<rect class="line top" width="80" height="10" x="10" y="20" rx="5"></rect>
+				<rect class="line middle" width="80" height="10" x="10" y="45" rx="5"></rect>
+				<rect class="line bottom" width="80" height="10" x="10" y="70" rx="5"></rect>
+			</svg>
+		</button>
 	</nav>
+
+	<!-- 
+		NEW: MOBILE MENU 
+		This is a new container for the links, hidden by default.
+	-->
+	<div class="mobile-menu" id="mobile-menu">
+		<HeaderLink href="/">Home</HeaderLink>
+		<HeaderLink href="/services">Services</HeaderLink>
+		<HeaderLink href="/portfolio">Portfolio</HeaderLink>
+		<HeaderLink href="/about">About</HeaderLink>
+		<HeaderLink href="/contact">Contact</HeaderLink>
+	</div>
 </header>
+
 <style>
-	/* These are the layout styles we fixed */
+	/* --- Original Desktop Styles --- */
 	header {
 		margin: 0;
 		padding: 0 1em;
@@ -43,41 +69,98 @@ import { SITE_TITLE } from '../consts';
 		color: var(--text); 
 	}
 	.nav-links {
-		display: flex;
+		display: flex; /* This is for desktop */
 		gap: 1.5em;
 	}
+
+	/* --- NEW: Hamburger Icon Styles --- */
+	.hamburger {
+		display: none; /* Hidden on desktop */
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		z-index: 100;
+	}
+	.hamburger .line {
+		fill: #333; /* Dark grey lines */
+		transition: all 0.3s ease-in-out;
+	}
+
+	/* --- NEW: Mobile Menu Styles --- */
+	.mobile-menu {
+		display: none; /* Hidden by default */
+		flex-direction: column;
+		width: 100%;
+		background: white;
+		position: absolute;
+		left: 0;
+		top: 60px; /* Position it just below the header */
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	/* NEW: This class is toggled by JavaScript */
+	.mobile-menu.is-open {
+		display: flex; /* Show the menu */
+	}
+
+	/* --- Media Query for Mobile --- */
 	@media (max-width: 720px) {
 		.nav-links {
-			display: none;
+			display: none; /* Hide desktop links */
+		}
+		.hamburger {
+			display: block; /* Show hamburger button */
 		}
 	}
 
-	/* --- THIS IS THE FIX ---
-	   This :global() selector will override the ugly blue
-	   from the template, even inside the HeaderLink component.
-	*/
-
-	/* Style for non-active links */
+	/* --- Original Link Styling (Global) --- */
 	:global(.nav-links a) {
 		text-decoration: none !important;
-		color: #555 !important; /* A nice dark grey */
+		color: #555 !important;
 		background-color: transparent !important;
 		padding: 0.5em 1em;
 		border-radius: 6px;
 		transition: all 0.2s ease;
 	}
-
-	/* Style for when you hover over a link */
 	:global(.nav-links a:hover) {
-		color: #228b22 !important; /* Garden green on hover */
-		background-color: #f0f8f0 !important; /* Light green background */
+		color: #228b22 !important;
+		background-color: #f0f8f0 !important;
+	}
+	:global(.nav-links a.active) {
+		color: #228b22 !important;
+		background-color: #f0f8f0 !important;
+		font-weight: 600 !important;
+		text-decoration: none !important;
 	}
 
-	/* Style for the link of the page you are currently on */
-	:global(.nav-links a.active) {
-		color: #228b22 !important; /* Garden green for active link */
-		background-color: #f0f8f0 !important; /* Light green background */
+	/* --- NEW: Styling for links in the MOBILE menu --- */
+	:global(.mobile-menu a) {
+		text-decoration: none !important;
+		color: #333 !important; /* Dark text */
+		padding: 1.5em 1em;
+		border-bottom: 1px solid #f0f0f0;
+		text-align: center;
+		font-size: 1.1em;
+	}
+	:global(.mobile-menu a:hover) {
+		background-color: #f0f8f0 !important; /* Light green hover */
+		color: #228b22 !important; /* Garden green text */
+	}
+	:global(.mobile-menu a.active) {
+		background-color: #f0f8f0 !D;
+		color: #228b22 !important;
 		font-weight: 600 !important;
-		text-decoration: none !important; /* Remove that ugly underline */
 	}
 </style>
+
+<!-- 
+	NEW: CLIENT-SIDE JAVASCRIPT
+	This script toggles the 'is-open' class on the mobile menu
+	when the hamburger button is clicked.
+-->
+<script>
+	document.getElementById('menu-toggle').addEventListener('click', function() {
+		document.getElementById('mobile-menu').classList.toggle('is-open');
+	});
+</script>
