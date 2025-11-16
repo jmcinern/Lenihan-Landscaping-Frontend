@@ -2,7 +2,8 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_DESCRIPTION } from '../consts';
+// 1. Import new content file
+import content from '../data/contact.json';
 ---
 
 <!doctype html>
@@ -21,19 +22,22 @@ import { SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>Get in Touch</h1>
+			<!-- 2. Make content dynamic -->
+			<h1>{content.heading}</h1>
+			<p>{content.subheading}</p>
+			
 			<div class="contact-details">
 				<p>
-					<strong>Name:</strong> Jack Lenihan, Owner Operator
+					<strong>Name:</strong> {content.name}
 				</p>
 				<p>
-					<strong>Phone:</strong> 0894542988
+					<strong>Phone:</strong> {content.phone}
 				</p>
 				<p>
-					<strong>Email:</strong> [TODO: Add Jack's Email Address]
+					<strong>Email:</strong> {content.email}
 				</p>
 				<p>
-					<strong>Service Area:</strong> Dublin wide
+					<strong>Service Area:</strong> {content.area}
 				</p>
 			</div>
 			

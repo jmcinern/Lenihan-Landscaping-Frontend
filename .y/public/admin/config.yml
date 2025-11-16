@@ -1,23 +1,68 @@
-# This tells the CMS to use GitHub for login and saving
 backend:
   name: github
-  # This MUST match your repo name exactly
   repo: jmcinern/Lenihan-Landscaping-Frontend
-  branch: main # This is the branch it will save to
+  branch: main
 
-# This tells the CMS where to save images Jack uploads
 media_folder: "y/public/images/uploads"
-# This tells the site how to access those images
 public_folder: "/images/uploads"
 
-# This is where we define what Jack can edit.
 collections:
-  - name: "portfolio" # The name of the collection
-    label: "Portfolio" # What Jack will see in the editor
-    # This is the folder it will save new markdown files to
-    folder: "y/src/content/portfolio" 
+  - name: "pages"
+    label: "Pages"
+    files:
+      # Homepage
+      - label: "Home Page"
+        name: "home"
+        file: "y/src/data/home.json"
+        fields:
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "USP Text", name: "usp", widget: "string" }
+          - { label: "Button Text", name: "button_text", widget: "string" }
+      
+      # About Page
+      - label: "About Page"
+        name: "about"
+        file: "y/src/data/about.json"
+        fields:
+          - { label: "Our Story", name: "story", widget: "markdown" }
+          - { label: "The Team", name: "team", widget: "markdown" }
+          - { label: "Qualifications", name: "qualifications", widget: "string" }
+          - label: "Our Values"
+            name: "values"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "string" }
+
+      # Services Page
+      - label: "Services Page"
+        name: "services"
+        file: "y/src/data/services.json"
+        fields:
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "markdown" }
+
+      # Contact Page
+      - label: "Contact Page"
+        name: "contact"
+        file: "y/src/data/contact.json"
+        fields:
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Subheading", name: "subheading", widget: "string" }
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Service Area", name: "area", widget: "string" }
+
+  # Portfolio Collection
+  - name: "portfolio"
+    label: "Portfolio"
+    folder: "y/src/content/portfolio"
     create: true
-    # These are the fields that match your 'config.ts' file
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "pubDate", widget: "datetime" }

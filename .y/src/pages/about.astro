@@ -3,6 +3,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+// 1. Import the content from our new JSON file
+import content from '../data/about.json';
 ---
 
 <!doctype html>
@@ -31,37 +33,27 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header />
 		<main>
+			<!-- 2. The page content is now dynamic -->
 			<div class="about-content">
 				<h1>About Us</h1>
 
 				<h2>Our Story</h2>
-				<p>
-					[TODO: Add story here. e.g., "I'm Jack, and I've been a passionate gardener for 15 years..."]
-				</p>
+				<p>{content.story}</p>
 
 				<h2>The Team</h2>
-				<p>
-					[TODO: Add team info here. e.g., "Lenihan Landscaping is a small, dedicated team..."]
-					<!-- A photo here would be great -->
-				</p>
+				<p>{content.team}</p>
 				
 				<h2>Our Values</h2>
 				<ul class="values-list">
-					<li>
-						<strong>Sustainability:</strong> [TODO: e.g., "We believe in sustainable practices..."]
-					</li>
-					<li>
-						<strong>Reliability:</strong> [TODO: e.g., "We pride ourselves on reliability..."]
-					</li>
-					<li>
-						<strong>Quality:</strong> [TODO: e.g., "We deliver the highest quality craftsmanship..."]
-					</li>
+					{content.values.map(value => (
+						<li>
+							<strong>{value.title}:</strong> {value.text}
+						</li>
+					))}
 				</ul>
 
 				<h2>Qualifications</h2>
-				<p>
-					[TODO: Add qualifications here. e.g., "Fully insured and registered with ALCI."]
-				</p>
+				<p>{content.qualifications}</p>
 			</div>
 		</main>
 		<Footer />

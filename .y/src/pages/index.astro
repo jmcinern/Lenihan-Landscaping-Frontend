@@ -2,20 +2,20 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION } from '../consts'; // Removed SITE_TITLE as we'll set it manually
+import { SITE_DESCRIPTION } from '../consts';
+// 1. Import new content file
+import content from '../data/home.json';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<!-- I've given it a specific title for the homepage -->
 		<BaseHead title="Lenihan Landscaping - Home" description={SITE_DESCRIPTION} />
 		<style>
-			/* This will give your button a basic look. We can make it better later. */
 			.button {
 				display: inline-block;
 				padding: 12px 24px;
-				background-color: #228b22; /* A nice garden green */
+				background-color: #228b22;
 				color: white;
 				text-decoration: none;
 				border-radius: 8px;
@@ -24,21 +24,18 @@ import { SITE_DESCRIPTION } from '../consts'; // Removed SITE_TITLE as we'll set
 				transition: background-color 0.3s;
 			}
 			.button:hover {
-				background-color: #1a6a1a; /* A darker green for hover */
+				background-color: #1a6a1a;
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<!-- 
-				THIS IS THE NEW CONTENT.
-				I've replaced the "Hello, Astronaut!" content with your new text.
-			-->
-			<h1>Breathe easy, your garden is cared for.</h1>
-			<p>TODO: Add your "USP" (Unique Selling Proposition) here.</p>
+			<!-- 2. Make content dynamic -->
+			<h1>{content.heading}</h1>
+			<p>{content.usp}</p>
 			
-			<a href="/contact" class="button">Get in Touch</a>
+			<a href="/contact" class="button">{content.button_text}</a>
 			
 		</main>
 		<Footer />

@@ -2,7 +2,8 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_DESCRIPTION } from '../consts';
+// 1. Import the content from our new JSON file
+import content from '../data/services.json';
 ---
 
 <!doctype html>
@@ -10,7 +11,6 @@ import { SITE_DESCRIPTION } from '../consts';
 	<head>
 		<BaseHead title="Our Services - Lenihan Landscaping" description="Explore our design, build, and maintenance services." />
 		<style>
-			/* Simple styles for the services page */
 			.service-card {
 				border: 1px solid #eee;
 				border-radius: 8px;
@@ -22,6 +22,10 @@ import { SITE_DESCRIPTION } from '../consts';
 				margin-top: 0;
 				color: #228b22; /* Garden green */
 			}
+			/* This style makes line breaks (\n) work */
+			.service-card p {
+				white-space: pre-wrap;
+			}
 		</style>
 	</head>
 	<body>
@@ -29,32 +33,13 @@ import { SITE_DESCRIPTION } from '../consts';
 		<main>
 			<h1>Our Services</h1>
 			
-			<div class="service-card">
-				<h2>Design</h2>
-				<p>
-					Our comprehensive design service guides you through the entire creative process, 
-					from the first concept sketch to a final, detailed plan for your perfect garden.
-				</p>
-			</div>
-
-			<div class="service-card">
-				<h2>Build</h2>
-				<p>
-					Our skilled team brings your vision to life with meticulous care and craftsmanship, 
-					ensuring every element, from patios to planting, is built to the highest standard.
-				</p>
-			</div>
-
-			<div class="service-card">
-				<h2>Maintain</h2>
-				<p>
-					“Free up your time to focus on what’s truly important to you”
-				</p>
-				<p>
-					Our excellent maintenance service, complete with the requisite equipment and 
-					expertise delivers an efficient, reliable and hassle-free customer experience.
-				</p>
-			</div>
+			<!-- 2. We now loop over the services from the JSON file -->
+			{content.services.map(service => (
+				<div class="service-card">
+					<h2>{service.title}</h2>
+					<p>{service.text}</p>
+				</div>
+			))}
 
 		</main>
 		<Footer />
