@@ -1,0 +1,26 @@
+# This tells the CMS to use GitHub for login and saving
+backend:
+  name: github
+  # This MUST match your repo name exactly
+  repo: jmcinern/Lenihan-Landscaping-Frontend
+  branch: main # This is the branch it will save to
+
+# This tells the CMS where to save images Jack uploads
+media_folder: "y/public/images/uploads"
+# This tells the site how to access those images
+public_folder: "/images/uploads"
+
+# This is where we define what Jack can edit.
+collections:
+  - name: "portfolio" # The name of the collection
+    label: "Portfolio" # What Jack will see in the editor
+    # This is the folder it will save new markdown files to
+    folder: "y/src/content/portfolio" 
+    create: true
+    # These are the fields that match your 'config.ts' file
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "pubDate", widget: "datetime" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Hero Image", name: "heroImage", widget: "image", optional: true }
+      - { label: "Body", name: "body", widget: "markdown" }
