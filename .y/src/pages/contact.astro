@@ -8,40 +8,48 @@ import content from '../data/contact.json';
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title="Contact Us - Lenihan Landscaping" description="Get in touch for a free quote." />
-		<style>
-			.contact-details {
-				line-height: 1.8;
-			}
-			.contact-details strong {
-				color: #333;
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<!-- 2. Make content dynamic -->
-			<h1>{content.heading}</h1>
-			<p>{content.subheading}</p>
-			
-			<div class="contact-details">
-				<p>
-					<strong>Name:</strong> {content.name}
-				</p>
-				<p>
-					<strong>Phone:</strong> {content.phone}
-				</p>
-				<p>
-					<strong>Email:</strong> {content.email}
-				</p>
-				<p>
-					<strong>Service Area:</strong> {content.area}
-				</p>
-			</div>
-			
-		</main>
-		<Footer />
-	</body>
+    <head>
+        <BaseHead title="Contact Us - Lenihan Landscaping" description="Get in touch for a free quote." />
+        <style>
+            .contact-details {
+                line-height: 1.8;
+            }
+            .contact-details strong {
+                color: #333;
+            }
+            /* Optional: Style the links to stand out */
+            .contact-details a {
+                color: #228b22; /* Garden green */
+                text-decoration: none;
+            }
+            .contact-details a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <Header />
+        <main>
+            <!-- 2. Make content dynamic -->
+            <h1>{content.heading}</h1>
+            <p>{content.subheading}</p>
+            
+            <div class="contact-details">
+                <p>
+                    <strong>Name:</strong> {content.name}
+                </p>
+                <p>
+                    <strong>Phone:</strong> <a href={`tel:${content.phone}`}>{content.phone}</a>
+                </p>
+                <p>
+                    <strong>Email:</strong> <a href={`mailto:${content.email}`}>{content.email}</a>
+                </p>
+                <p>
+                    <strong>Service Area:</strong> {content.area}
+                </p>
+            </div>
+            
+        </main>
+        <Footer />
+    </body>
 </html>
