@@ -7,6 +7,12 @@ import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { Image } from 'astro:assets'; 
 
+const SHOW_PORTFOLIO = false; // Flip to true when the portfolio should be public again.
+
+if (!SHOW_PORTFOLIO) {
+	return Astro.redirect('/');
+}
+
 const posts = (await getCollection('portfolio')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );

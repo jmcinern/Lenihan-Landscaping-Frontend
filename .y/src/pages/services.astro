@@ -2,46 +2,41 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-// 1. Import the content from our new JSON file
 import content from '../data/services.json';
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title="Our Services - Lenihan Landscaping" description="Explore our design, build, and maintenance services." />
-		<style>
-			.service-card {
-				border: 1px solid #eee;
-				border-radius: 8px;
-				padding: 24px;
-				margin-bottom: 20px;
-				background: #f9f9f9;
-			}
-			.service-card h2 {
-				margin-top: 0;
-				color: #228b22; /* Garden green */
-			}
-			/* This style makes line breaks (\n) work */
-			.service-card p {
-				white-space: pre-wrap;
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>Our Services</h1>
-			
-			<!-- 2. We now loop over the services from the JSON file -->
-			{content.services.map(service => (
-				<div class="service-card">
-					<h2>{service.title}</h2>
-					<p>{service.text}</p>
-				</div>
-			))}
+    <head>
+        <BaseHead title="Our Services - Lenihan Landscaping" description="Explore our design, build, and maintenance services." />
+        <style>
+            /* Simple styles for the list */
+            .services-list {
+                font-size: 1.1em;
+                line-height: 1.8;
+                color: #333;
+                margin-top: 1rem;
+            }
+            .services-list li {
+                margin-bottom: 0.5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <Header />
+        <main>
+            <h1>Our Services</h1>
+            
+            <!-- Changed from cards to a bulleted list -->
+            <ul class="services-list">
+                {content.services.map(service => (
+                    <li>
+                        {service.title}
+                    </li>
+                ))}
+            </ul>
 
-		</main>
-		<Footer />
-	</body>
+        </main>
+        <Footer />
+    </body>
 </html>
